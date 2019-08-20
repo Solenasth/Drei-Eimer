@@ -16,10 +16,12 @@ const Title = styled.h1`
   background: linear-gradient(${Gradient});
   background-size: 200% 200%;
   -webkit-background-clip: text;
+  background-clip: none;
   -webkit-text-fill-color: transparent;
   align-self: center;
   font-weight: bolder;
   font-size: 1.8em;
+  min-width: 5em;
 `;
 
 const RulesList = styled.ul``;
