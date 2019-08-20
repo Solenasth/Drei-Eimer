@@ -5,7 +5,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faArrowAltCircleDown } from "@fortawesome/free-solid-svg-icons";
 import Hero from "./components/Hero.jsx";
-import About from "./components/About.jsx";
+import About from "./containers/About.jsx";
 
 library.add(fab, faArrowAltCircleDown);
 
