@@ -6,6 +6,8 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faArrowAltCircleDown } from "@fortawesome/free-solid-svg-icons";
 import Hero from "./components/Hero.jsx";
 import About from "./containers/About.jsx";
+import Step from "./components/Step.jsx";
+import Solution from "./components/Solution.jsx";
 
 library.add(fab, faArrowAltCircleDown);
 
@@ -14,6 +16,7 @@ function AppWithHooks() {
     <div>
       <Hero />
       <About />
+      <Solution />
     </div>
   );
 }
