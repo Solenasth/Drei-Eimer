@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { SOLUTION1, SOLUTION2 } from "../database/premade";
-import Step from "./Step";
+import Step from "./Step.jsx";
 
 const StepsList = styled.div`
   display: flex;
@@ -9,22 +8,32 @@ const StepsList = styled.div`
 `;
 
 function Solution(props) {
-  const [Steps, SetSteps] = useState(SOLUTION1.steps);
-  const [Finished, SetFinished] = useState(SOLUTION1.finished);
+  const [Steps, SetSteps] = useState(props.steps);
+  const [Finished, SetFinished] = useState(props.finished);
   return (
-    <StepsList>
-      {Steps.map(step => {
-        return (
-          <Step
-            key={"step #" + step.id}
-            action={step.action}
-            payload={step.payload}
-            state={step.state}
-          />
-        );
-      })}
-    </StepsList>
+    <StepsList>{Finished ? ExistingSolution(Steps) : NewSolution()}</StepsList>
   );
+}
+
+function ExistingSolution(data) {
+  {
+    return data.map(step => {
+      return (
+        <Step
+          key={"step #" + step.id}
+          action={step.action}
+          payload={step.payload}
+          state={step.state}
+        />
+      );
+    });
+  }
+}
+
+function NewSolution() {
+  return <Step />;
+  //SHOULD CREATE A STEP WITH ALL AVAILABLE ACTIONS
+  //EACH ACTION SHOULD HAVE A WAY TO MAKE A NEW STEP AND REGISTER TAKEN ACTION
 }
 
 export default Solution;
