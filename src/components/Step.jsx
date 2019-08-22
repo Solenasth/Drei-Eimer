@@ -2,8 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import ActionCard from "./ActionCard.jsx";
 import ACTIONS from "../database/validActions.js";
+import BucketCard from "./BucketsCard.jsx";
 
 const ActionList = styled.div`
+  display: flex;
+`;
+const CardsList = styled.div`
   display: flex;
   width: 100%;
   flex-wrap: wrap;
@@ -13,13 +17,20 @@ const PosibleActions = styled(ActionList)``;
 
 function Step(props) {
   return (
-    <ActionList>
-      {props.action
-        ? MakePredefinedAction(props)
-        : props.state
-        ? MakeAllAvailableActions(props.state)
-        : MakeAllAvailableActions({ a: 0, b: 0, c: 0 })}
-    </ActionList>
+    <CardsList>
+      <ActionList>
+        {props.action
+          ? MakePredefinedAction(props)
+          : props.state
+          ? MakeAllAvailableActions(props.state)
+          : MakeAllAvailableActions({ a: 0, b: 0, c: 0 })}
+      </ActionList>
+      {props.state ? (
+        <BucketCard state={props.state} />
+      ) : (
+        <BucketCard state={{ a: 0, b: 0, c: 0 }} />
+      )}
+    </CardsList>
   );
 }
 
