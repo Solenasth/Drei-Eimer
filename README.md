@@ -17,6 +17,17 @@ This project is a take home excercise, and this page is my take on the problem, 
 
 that's it
 
+## 🔧 WIP 🔧
+this features are not quite ready, but they were planned in my original solution
+
+* **Navigation**: Using  [HooksRouter](https://github.com/Paratron/hookrouter) the scaffolding of buttons is there but right now they serve only as showcase/demo/scaffolding of things to come 
+* **Customize Challange**: I did the data structuring necesary to make the *challange* customizable, given some simple rules, such as always having a < c < b, in a form, customize the capacity of the buckets, 
+the data structures are there, and the components work flexibily with what they have. 
+* **Improve Accessibility**: it doesn't adhere to modern A11y standards yet, need to fix.
+* **use an API**: eventually, the idea would be to support the app with an API, so you can grab previously stored *"custom challanges"* or remember between devices which was the last step/challange.
+* **Iron Mobile Visual Bugs**: some things break on mobile, however, the things that do, are very easily fixed in Sass, however time did not allow this kind of bugfixing
+
+
 ## Finished Features
 ### Animated Gradient hero image that looks very sassy
 ![Animated gradient hero image](https://user-images.githubusercontent.com/27336508/63577697-98068680-c554-11e9-88d2-be9f788c41a0.gif)
@@ -62,6 +73,14 @@ The field for Origin only displays when its needed, such as in the TRANSFER acti
 ![Origin](https://user-images.githubusercontent.com/27336508/63579608-ac4c8280-c558-11e9-9364-ee5e24d3f72b.png)
 
 
+### Error and Success Reporting on UI
+the app lets you know when you make a mistake, as well as when you finish the challange. 
 
+![error](https://user-images.githubusercontent.com/27336508/63580327-30533a00-c55a-11e9-8338-2af2de40c9ed.png)
+
+![Success](https://user-images.githubusercontent.com/27336508/63580660-ea4aa600-c55a-11e9-8743-3d651a765221.png)
+
+## Closing tougths
+I really enjoyed working on this excercise, I really want to finish my planned features and keep working on the site's design and User Experience. I hope it was to your liking as well 🐈
 
 
