@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import resources from "../database/resources";
+import BucketsCapacity from "../database/buckets";
 
 const Card = styled.div`
   display: flex;
@@ -23,7 +24,7 @@ const Card = styled.div`
   border-style: solid;
   border-color: transparent;
 `;
-const Data = styled.p`
+const Data = styled.div`
   font-size: 1em;
   text-align: center;
   margin: 0.1em;
@@ -38,6 +39,10 @@ const DataPiece = styled.p`
   align-content: center;
   align-items: center;
 `;
+const DataPiece_C = styled(DataPiece)`
+  border-top: 0.05em solid;
+  padding-top: 0.5em;
+`;
 
 const IconTag = styled.span`
   margin-top: 0.2em;
@@ -50,16 +55,23 @@ function BucketCard(props) {
       <Data>
         <DataPiece>
           <BucketIcon src={resources.icon_full} />
-          <IconTag> A: {state.a} </IconTag>
+          <IconTag>
+            {" "}
+            A: {state.a} / {BucketsCapacity.a}
+          </IconTag>
         </DataPiece>
         <DataPiece>
           <BucketIcon src={resources.icon_full} />
-          <IconTag>B: {state.b}</IconTag>
+          <IconTag>
+            B: {state.b} / {BucketsCapacity.b}
+          </IconTag>
         </DataPiece>
-        <DataPiece>
+        <DataPiece_C>
           <BucketIcon src={resources.icon_full} />
-          <IconTag>C: {state.c}</IconTag>
-        </DataPiece>
+          <IconTag>
+            C: {state.c} / {BucketsCapacity.c}
+          </IconTag>
+        </DataPiece_C>
       </Data>
     </Card>
   );
