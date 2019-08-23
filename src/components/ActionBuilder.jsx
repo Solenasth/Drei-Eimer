@@ -123,11 +123,9 @@ function CreateForm(props, RenderOrigin, SetRenderOrigin, Steps, SetSteps) {
         break;
     }
     let newState = Object.assign({}, step.state);
-    console.log(newState);
     SetCurrentState(newState);
     let newSteps = [...Steps, step];
     SetSteps(newSteps);
-    console.log(Steps);
 
     event.preventDefault();
   };
