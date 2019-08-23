@@ -17,8 +17,8 @@ function AppWithHooks() {
     <div>
       <Hero />
       <About />
-      <Solution steps={SOLUTION1.steps} finished={SOLUTION1.finished} />
-      <Solution />
+      <Solution data={SOLUTION1} />
+      <Solution data={[]} />
     </div>
   );
 }
