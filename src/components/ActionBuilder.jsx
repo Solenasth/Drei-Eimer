@@ -205,6 +205,7 @@ function CreateForm(
         emptyBucket();
         break;
     }
+    SetErrorMessage("");
     let newState = Object.assign({}, step.state);
     SetCurrentState(newState);
     let newSteps = [...Steps, step];
