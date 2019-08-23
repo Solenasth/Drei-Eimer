@@ -49,6 +49,7 @@ I took insprition from CssTricks, and applied some of their advanced techniques 
 the Solution component can react to displaying a previously made solution or allow the user to build one, depending on the props it receives.
 
 this is an example of how the component renders the steps, note that it is very visual, the icons respond to the status of the buckets, but this can improve further. 
+
 ![premade](https://user-images.githubusercontent.com/27336508/63579318-f719ca80-c557-11e9-96d1-3eef7e7eba56.png)
 
 this is an example of how the component reacts to building a new solution. 
@@ -58,7 +59,7 @@ just as before, i tried to do it as user friendly and visual as possible in the 
 
 The field for Origin only displays when its needed, such as in the TRANSFER action. 
 
-![Origin] (https://user-images.githubusercontent.com/27336508/63579608-ac4c8280-c558-11e9-9364-ee5e24d3f72b.png)
+![Origin](https://user-images.githubusercontent.com/27336508/63579608-ac4c8280-c558-11e9-9364-ee5e24d3f72b.png)
 
 
 
