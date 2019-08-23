@@ -58,6 +58,17 @@ const Title = styled.h1`
 const Tag = styled.p`
   margin: 0.5em;
 `;
+const ErrorTag = styled.p`
+  justify-content: center;
+  font-size: 1.2em;
+  margin: 0em;
+  display: flex;
+  color: red;
+  font-weight: bolder;
+  font-family: "Consolas";
+  text-transform: capitalize;
+`;
+
 const Origin = styled.div`
   display: flex;
   align-items: center;
@@ -80,16 +91,32 @@ const step = {
 function ActionBuilder(props) {
   const [RenderOrigin, SetRenderOrigin] = useState(false);
   const [Steps, SetSteps] = useState([]);
+  const [ErrorMessage, SetErrorMessage] = useState("");
 
   return (
     <ActionBuilderCard>
       <Title>Make a new step</Title>
-      {CreateForm(props, RenderOrigin, SetRenderOrigin, Steps, SetSteps)}
+      {CreateForm(
+        props,
+        RenderOrigin,
+        SetRenderOrigin,
+        Steps,
+        SetSteps,
+        SetErrorMessage
+      )}
+      <ErrorTag>{ErrorMessage}</ErrorTag>
     </ActionBuilderCard>
   );
 }
 
-function CreateForm(props, RenderOrigin, SetRenderOrigin, Steps, SetSteps) {
+function CreateForm(
+  props,
+  RenderOrigin,
+  SetRenderOrigin,
+  Steps,
+  SetSteps,
+  SetErrorMessage
+) {
   const { SetFinished, SetCurrentState } = props;
   //======== event handlers ======///
   //event handler for action select
@@ -111,6 +138,49 @@ function CreateForm(props, RenderOrigin, SetRenderOrigin, Steps, SetSteps) {
   };
   //event handler for submit step
   const submit = event => {
+    event.preventDefault();
+    //basic error handling as demo, by no means comprehensive.
+    //bucket is full
+    if (
+      step.action === ACTIONS.FILL &&
+      step.state[step.payload.target] === BucketsCapacity[step.payload.target]
+    ) {
+      SetErrorMessage("Target bucket is full!");
+      return;
+    }
+    //bucket is already empty
+    if (
+      step.action === ACTIONS.EMPTY &&
+      step.state[step.payload.target] === 0
+    ) {
+      SetErrorMessage("Target bucket is already empty!!");
+      return;
+    }
+    //tried to transfer to same bucket
+    if (
+      step.action === ACTIONS.TRANSFER &&
+      step.payload.target === step.payload.origin
+    ) {
+      SetErrorMessage("Please select a target diferent from origin");
+      return;
+    }
+    //tried to transfer an empty bucket
+    if (
+      step.action === ACTIONS.TRANSFER &&
+      step.state[step.payload.origin] === 0
+    ) {
+      SetErrorMessage("cannot transfer from an empty bucket!");
+      return;
+    }
+    //tried to transfer to full bucket
+    if (
+      step.action === ACTIONS.TRANSFER &&
+      step.state[step.payload.target] === BucketsCapacity[step.payload.target]
+    ) {
+      SetErrorMessage("Target Bucket is already full!");
+      return;
+    }
+
     switch (step.action) {
       case ACTIONS.FILL:
         fillBucket();
@@ -126,8 +196,6 @@ function CreateForm(props, RenderOrigin, SetRenderOrigin, Steps, SetSteps) {
     SetCurrentState(newState);
     let newSteps = [...Steps, step];
     SetSteps(newSteps);
-
-    event.preventDefault();
   };
 
   return (
