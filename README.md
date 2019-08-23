@@ -1,13 +1,19 @@
-# React Boilerplate
+# Drei Eimer (Three buckets)
 
-this project is intended to be used as a quick star, pre-configured stack of tech for my own prototypes, but feel free to use it if you find it usefull. 
+This project is a take home excercise, and this page is my take on the problem, I focused on my forte, and even tought not all of the planned functionality made it, due to time constrains; I feel like it looks cool enough to be on the interwebs.
 
 ## tech inside
 * 📦 Parcel 
 * 🌺 Prettier 
 * 📝 EsLint 
 * 💅 Styled Components 
+* 💄 Sass!
 * 🐉 fontAwesome for React 
+* ⚛️ React with hooks.
+
+## Functionality that did made it
+
+
 
 Configured to work properly with each other and support Accessibility standards. 
 it also contains the following commands, they can be run using npm run <command>
