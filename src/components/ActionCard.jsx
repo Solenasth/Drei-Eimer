@@ -12,6 +12,18 @@ const Card = styled.div`
   border-radius: 1em;
 `;
 const CardData = styled.div``;
+const CardDataInteractive = styled.div`
+  transition: color 0.2s ease-out;
+  visibility: visible;
+  color: black;
+  font-weight: normal;
+  ${Card}:hover & {
+    color: #eb3449;
+    transition: color 0.2s ease-out;
+    visibility: visible;
+    font-weight: bolder;
+  }
+`;
 
 const Title = styled.h1`
   text-align: center;
@@ -61,9 +73,9 @@ function ExistingActionCard(data) {
 
 function NewActionCard(action) {
   return (
-    <CardData>
+    <CardDataInteractive>
       <Title>{action}</Title>
-    </CardData>
+    </CardDataInteractive>
   );
 }
 

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ActionCard from "./ActionCard.jsx";
 import ACTIONS from "../database/validActions.js";
 import BucketCard from "./BucketsCard.jsx";
+import ActionBuilder from "./ActionBuilder.jsx";
 
 const ActionList = styled.div`
   display: flex;
@@ -13,7 +14,10 @@ const CardsList = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 `;
-const PosibleActions = styled(ActionList)``;
+const PosibleActions = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 function Step(props) {
   return (
@@ -21,14 +25,18 @@ function Step(props) {
       <ActionList>
         {props.action
           ? MakePredefinedAction(props)
-          : props.state
-          ? MakeAllAvailableActions(props.state)
-          : MakeAllAvailableActions({ a: 0, b: 0, c: 0 })}
+          : MakeAllAvailableActions(
+              props.CurrentState,
+              props.SetCurrentState,
+              props.SetSteps,
+              props.SetFinished,
+              props.Steps
+            )}
       </ActionList>
-      {props.state ? (
+      {props.Finished ? (
         <BucketCard state={props.state} />
       ) : (
-        <BucketCard state={{ a: 0, b: 0, c: 0 }} />
+        <BucketCard state={props.CurrentState} />
       )}
     </CardsList>
   );
@@ -46,12 +54,22 @@ function MakePredefinedAction(data) {
   );
 }
 
-function MakeAllAvailableActions(currentState) {
+function MakeAllAvailableActions(
+  CurrentState,
+  SetCurrentState,
+  SetSteps,
+  SetFinished,
+  Steps
+) {
   return (
     <PosibleActions>
-      <ActionCard action={ACTIONS.FILL} />
-      <ActionCard action={ACTIONS.TRANSFER} />
-      <ActionCard action={ACTIONS.EMPTY} />
+      <ActionBuilder
+        CurrentState={CurrentState}
+        SetCurrentState={SetCurrentState}
+        SetSteps={SetSteps}
+        SetFinished={SetFinished}
+        Steps={Steps}
+      />
     </PosibleActions>
   );
 }

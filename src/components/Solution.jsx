@@ -8,14 +8,29 @@ const StepsList = styled.div`
 `;
 
 function Solution(props) {
-  const [Steps, SetSteps] = useState(props.steps);
-  const [Finished, SetFinished] = useState(props.finished);
+  const [Steps, SetSteps] = useState(props.data.steps);
+  const [Finished, SetFinished] = useState(
+    props.data.finished ? props.data.finished : false
+  );
+  const [CurrentState, SetCurrentState] = useState({ a: 0, b: 0, c: 0 });
+
   return (
-    <StepsList>{Finished ? ExistingSolution(Steps) : NewSolution()}</StepsList>
+    <StepsList>
+      {Finished
+        ? ExistingSolution(Steps, Finished)
+        : NewSolution(
+            Finished,
+            SetFinished,
+            SetSteps,
+            Steps,
+            CurrentState,
+            SetCurrentState
+          )}
+    </StepsList>
   );
 }
 
-function ExistingSolution(data) {
+function ExistingSolution(data, Finished) {
   {
     return data.map(step => {
       return (
@@ -24,16 +39,31 @@ function ExistingSolution(data) {
           action={step.action}
           payload={step.payload}
           state={step.state}
+          Finished={Finished}
         />
       );
     });
   }
 }
 
-function NewSolution() {
-  return <Step />;
-  //SHOULD CREATE A STEP WITH ALL AVAILABLE ACTIONS
-  //EACH ACTION SHOULD HAVE A WAY TO MAKE A NEW STEP AND REGISTER TAKEN ACTION
+function NewSolution(
+  Finished,
+  SetFinished,
+  SetSteps,
+  Steps,
+  CurrentState,
+  SetCurrentState
+) {
+  return (
+    <Step
+      Finished={Finished}
+      SetFinished={SetFinished}
+      SetSteps={SetSteps}
+      Steps={Steps}
+      CurrentState={CurrentState}
+      SetCurrentState={SetCurrentState}
+    />
+  );
 }
 
 export default Solution;
