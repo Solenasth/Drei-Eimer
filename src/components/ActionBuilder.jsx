@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import ACTIONS from "../database/validActions";
 import BucketsCapacity from "../database/buckets";
+import Success from "../components/Success.jsx";
 
 const ActionButton = styled.button`
   margin: 1em;
@@ -69,6 +70,10 @@ const ErrorTag = styled.p`
   text-transform: capitalize;
 `;
 
+const Congratulate = styled(ErrorTag)`
+  color: green;
+`;
+
 const Origin = styled.div`
   display: flex;
   align-items: center;
@@ -105,6 +110,11 @@ function ActionBuilder(props) {
         SetErrorMessage
       )}
       <ErrorTag>{ErrorMessage}</ErrorTag>
+      {props.CurrentState.c === BucketsCapacity.c ? (
+        <Congratulate>
+          Congratulations! you finished the challange in {Steps.length} moves!
+        </Congratulate>
+      ) : null}
     </ActionBuilderCard>
   );
 }
@@ -117,7 +127,10 @@ function CreateForm(
   SetSteps,
   SetErrorMessage
 ) {
-  const { SetFinished, SetCurrentState } = props;
+  const { SetFinished, SetCurrentState, CurrentState } = props;
+  //----------detect finish ------------//
+  //SetFinished(CurrentState.c === BucketsCapacity.c ? true : false);
+
   //======== event handlers ======///
   //event handler for action select
   const selectAction = event => {
